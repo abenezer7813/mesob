@@ -1,11 +1,9 @@
-import React from 'react'
-import Signup from '../auth/SignUp/Signup'
-import Login from '../auth/login/Login'
+import Register from '../../pages/Register'
 
 function Main() {
   return (
     <>
-    <Login/>
+    <Register/>
     </>
   )
 }
