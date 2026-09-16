@@ -2,8 +2,12 @@ import { useState } from 'react'
 import './Register.css'
 import { FiArrowRight } from 'react-icons/fi'
 import { registerUser } from '../../services/authService'
+import { useNavigate } from 'react-router-dom'
+
 
 function Register() {
+
+    const navigate=useNavigate()
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -15,7 +19,7 @@ function Register() {
     function handleSubmit(e) {
         e.preventDefault()
            const validationErrors = validate(form)
-        if (Object.keys(errors).length === 0) {
+        if (Object.keys(validationErrors).length === 0) {
             try {
                 registerUser({
                     name: form.name,
@@ -23,6 +27,7 @@ function Register() {
                     password: form.password,
                 })
                 setErrors({})
+                navigate('/login')
 
 
             } catch (err) {
@@ -109,6 +114,7 @@ function Register() {
                 </div>
 
             </form>
+            <div><span>Already par tof our dinning family?  </span><p onClick={()=>navigate('/login')}>Sign in here</p></div>
         </div>
     )
 }
