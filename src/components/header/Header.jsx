@@ -1,8 +1,47 @@
 import React from 'react'
-import './Header.css'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
+import styles from './Header.module.css'
+
 function Header() {
+  const { user, logOutUser } = useAuth()
+  const navigate = useNavigate()
+
+  function handleLogout() {
+    logOutUser()
+    navigate('/login')
+  }
+
   return (
-    <div className='header'>Mesob Habesha House</div>
+    <div className={styles.header}>
+      <Link to='/menu' className={styles.logo}>Mesob Habesha House</Link>
+
+      {user ? (
+        <div className={styles.navCart} >
+          <nav className={styles.authenticatedNav}>
+            <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/menu'>Menu</NavLink>
+            <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/'>Featured Dish</NavLink>
+            <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/'>Order & Cart</NavLink>
+            <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/'>Delivery & Checkout</NavLink>
+             <div className={styles.cart}>
+              <div>3 Items</div>
+              <div className={styles.total}>1450 ETB</div>
+            </div>
+            <span>Hi, {user.name}</span>
+           
+            <button className={styles.logout} onClick={handleLogout}>Logout</button>
+          </nav>
+
+        </div>
+
+
+      ) : (
+        <nav className={styles.guest}>
+          <Link to='/login' className={styles.signin}>Sign In</Link>
+          <Link to='/register' className={styles.register}>Register</Link>
+        </nav>
+      )}
+    </div>
   )
 }
 

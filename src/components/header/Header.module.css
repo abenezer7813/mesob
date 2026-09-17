@@ -1,0 +1,65 @@
+.header {
+    display: flex;
+    background-color: var(--white);
+    padding: 20px 50px;
+    justify-content: space-evenly;
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border);
+
+
+}
+
+a,
+span {
+    text-decoration: none;
+    padding: 10px 10px;
+}
+
+.authenticatedNav {
+    display: flex;
+    gap: 10px;
+}
+
+.navCart {
+    display: flex;
+}
+
+.active {
+    color: var(--white);
+    background-color: var(--primary-dark);
+
+    border-radius: var(--radius-md);
+}
+
+.cart {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 25px;
+    background-color: var(--background);
+    border-radius: var(--radius-md);
+}
+
+.total {
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.logout {
+    color: var(--primary-dark);
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+}
+.signin{
+    color: var(--brown);
+}
+.register {
+    padding: 10px 20px;
+    background-color: var(--background);
+    border-radius: var(--radius-md);
+    font-weight: bold;
+    color: var(--primary-dark);
+}
