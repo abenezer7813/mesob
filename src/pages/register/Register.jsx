@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import './Register.css'
-import { FiArrowRight } from 'react-icons/fi'
+import styles from './Register.module.css'
+import { FiArrowRight, FiEye, FiLock, FiMail } from 'react-icons/fi'
 import { registerUser } from '../../services/authService'
 import { useNavigate } from 'react-router-dom'
+import { BsFilePerson } from 'react-icons/bs'
 
 
 function Register() {
 
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -18,7 +19,7 @@ function Register() {
 
     function handleSubmit(e) {
         e.preventDefault()
-           const validationErrors = validate(form)
+        const validationErrors = validate(form)
         if (Object.keys(validationErrors).length === 0) {
             try {
                 registerUser({
@@ -64,57 +65,76 @@ function Register() {
     }
 
     return (
-        <div className='register-page'>
+        <div className={styles.registerPage}>
             <div>
-                <h1>Create Your Mesob HJouse Account</h1>
+                <h1>Create Your Mesob House Account</h1>
                 <p>Join our culinary circle in less than  a minute</p>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={styles.form}>
                 <div>
                     <label htmlFor="name">Full Name</label>
-                    <input type="text" name='name' id='name'
-                        onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        value={form.name} />
+                    <div className={styles.inputs}>
+                        <BsFilePerson />
+                        <input type="text" name='name' id='name' placeholder='Abenezer Tariku'
+                            onChange={(e) => setForm({ ...form, name: e.target.value })}
+                            value={form.name} />
+                    </div>
                 </div>
                 <p>{errors.name}</p>
                 <div>
                     <label htmlFor="email">
                         Email Address
                     </label>
-                    <input type='email' name="email" id="email"
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        value={form.email} />
+                    <div className={styles.inputs}>
+                        <FiMail />
+                        <input type='email' name="email" id="email" placeholder='example@gmail.com'
+                            onChange={(e) => setForm({ ...form, email: e.target.value })}
+                            value={form.email} />
+                    </div>
                 </div>
-                <p>{errors.email}</p>
-                <div>
+                <p className={styles.errors}>{errors.email}</p>
+                <div className={styles.passwordInputs}>
                     <div>
                         <label htmlFor="pass">Password</label>
-                        <input type='password' id='pass' name='pass'
-                            onChange={(e) => setForm({ ...form, password: e.target.value })}
-                            value={form.password} />
-                        <p>{errors.password}</p>
+                        <div className={styles.inputs}>
+                            <FiLock />
+                            <input type='password' id='pass' name='pass'
+                                onChange={(e) => setForm({ ...form, password: e.target.value })}
+                                value={form.password} />
+                            <FiEye />
+
+                        </div>
+                        <p className={styles.errors}>{errors.password}</p>
                     </div>
                     <div>
                         <label htmlFor="confirm">Confirm Password</label>
-                        <input
-                            type='password' id='confirm'
-                            name='confirm'
-                            value={form.confirmPassword}
-                            onChange={(e) => {
-                                setForm({ ...form, confirmPassword: e.target.value })
-                            }} />
-                        <p>{errors.confirmPassword}</p>
+                        <div className={styles.inputs}>
+                            <FiLock />
+                            <input
+                                type='password' id='confirm'
+                                name='confirm'
+                                value={form.confirmPassword}
+                                onChange={(e) => {
+                                    setForm({ ...form, confirmPassword: e.target.value })
+                                }} />
+                            <FiEye />
+                        </div>
+                        <p className={styles.errors}>{errors.confirmPassword}</p>
                     </div>
                 </div>
 
-                <div>
+                <div className={styles.createBtn}>
                     <button type='submit'>
                         Create Account <FiArrowRight />
                     </button>
                 </div>
 
             </form>
-            <div><span>Already par tof our dinning family?  </span><p onClick={()=>navigate('/login')}>Sign in here</p></div>
+            <div className={styles.line}></div>
+            <div>
+                <p>Already par tof our dinning family? </p>
+                <p className={styles.login} onClick={() => navigate('/login')}>Sign in here</p>
+            </div>
         </div>
     )
 }

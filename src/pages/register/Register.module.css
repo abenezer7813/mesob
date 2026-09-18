@@ -1,4 +1,4 @@
-.loginPage {
+.registerPage{
     display: flex;
     flex-direction: column;
     justify-self: center;
@@ -9,34 +9,10 @@
     border-radius: var(--radius-md);
     gap: 10px;
 }
-
-.regMethod {
-    display: inline-flex;
-    flex-direction: row;
-    background-color: var(--background-warm);
-    gap: 20px;
-    padding: 5px;
-    border-radius: var(--radius-md);
-
+.form{
+    display: flex;
+    flex-direction: column;
 }
-
-.regMethod div {
-    padding: 10px;
-    cursor: pointer;
-}
-
-.regMethod .active {
-    background-color: var(--surface);
-    border-radius: var(--radius-md);
-    color: var(--primary-dark);
-    font-weight: bold;
-}
-
-.inputs {
-
-   
-}
-
 .inputs {
      background-color: var(--background-warm);
     border-radius: var(--radius-md);
@@ -50,30 +26,7 @@
     outline: none;
     margin: 0px 1px 1px 20px;
 }
-
-form label {
-    color: black;
-}
-
-.forgot {
-    display: flex;
-    justify-content: space-between;
-}
-
-.checkbox {
-    width: 18px;
-    height: 18px;
-    accent-color: var(--primary-dark);
-    cursor: pointer;
-}
-.forgotPin{
-cursor: pointer;
-font-weight: bold;
-}
-.forgotPin:hover{
-    color: var(--primary-dark);
-}
-.signBtn{
+.createBtn{
     display: flex;
     justify-self: center;
     justify-content: center;
@@ -82,16 +35,27 @@ font-weight: bold;
     background-color: var(--brown);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
+    margin: 30px 0px;
     
 }
-.signBtn button{
+.createBtn button{
     border: none;
     cursor: pointer;
     background-color: inherit;
     color: var(--surface);
 }
-.signBtn:hover,.signBtn button:hover{
+.createBtn:hover,.createBtn button:hover{
     background-color: var(--primary-dark);
+}
+
+.login{
+    font-weight: bold;
+    color: var(--brown);
+
+}
+.login:hover{
+    cursor: pointer;
+    color: var(--primary-dark);
 }
 .line{
     
@@ -99,19 +63,22 @@ font-weight: bold;
     margin: 10px 0px;
 
 }
-.register{
+.passwordInputs{
     display: flex;
-    flex-direction: column;
-    
-}
-.regLink{
-    font-weight: bold;
-    color: var(--brown);
+    justify-content: space-between;
+     gap: 20px;
 
 }
-.regLink:hover{
-    cursor: pointer;
-    color: var(--primary-dark);
+.passwordInputs input{
+    width: 70%;
+}
+.passwordInputs div{
+    width: 100%;
+    
+}
+label{
+    color: black;
+
 }
 .errors{
     color: red;
