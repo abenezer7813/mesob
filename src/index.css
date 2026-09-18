@@ -1,27 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lato:wght@400;500;600;700&display=swap");
 
-
 :root {
   /* =========================
      COLORS
   ========================= */
 
-  --brown: #922512;
-  --primary-dark: #781400;
+  --brown: #9a301c;
+  --primary-dark: #791b06;
+  --gold: #7d5800;
 
-  --background: #fff1ea;
+  --background: #fff8f6;
+  --background-warm: #fff1ea;
 
-  --surface: #fff8f6;
-  --surface-accent: #fce9e3;
+  --surface: #ffffff;
+  --surface-soft: #fce9e3;
+  --surface-alt: #f6e4dd;
+
+  --text: #59433f;
+  --heading: #27201c;
+  --muted: #81706e;
+
+  --border: #f0ded7;
 
   --white: #ffffff;
-
-  --text: #3c3c32;
-  --text-muted: #806f69;
-
-  --gold: #9a6a00;
-
-  --border: #eadbd5;
 
 
   /* =========================
@@ -36,30 +37,29 @@
      LAYOUT
   ========================= */
 
-  --container-width: 1200px;
+  --container-width: 1470px;
 
 
   /* =========================
-     BORDER RADIUS
+     RADIUS
   ========================= */
 
-  --radius-sm: 4px;
+  --radius-sm: 5px;
   --radius-md: 8px;
   --radius-lg: 12px;
+  --radius-pill: 999px;
 
 
   /* =========================
-     SHADOWS
+     SHADOW
   ========================= */
 
-  --shadow-sm: 0 2px 8px rgba(60, 40, 30, 0.08);
-  --shadow-md: 0 5px 18px rgba(60, 40, 30, 0.12);
+  --shadow-sm: 0 2px 8px rgba(80, 40, 30, 0.08);
+  --shadow-md: 0 4px 14px rgba(80, 40, 30, 0.12);
 }
 
 
-/* =========================
-   RESET
-========================= */
+/* RESET */
 
 * {
   margin: 0;
@@ -68,9 +68,7 @@
 }
 
 
-/* =========================
-   HTML / BODY
-========================= */
+/* GLOBAL */
 
 html {
   scroll-behavior: smooth;
@@ -84,9 +82,7 @@ body {
 }
 
 
-/* =========================
-   HEADINGS
-========================= */
+/* HEADINGS */
 
 h1,
 h2,
@@ -99,9 +95,7 @@ h6 {
 }
 
 
-/* =========================
-   LINKS
-========================= */
+/* LINKS */
 
 a {
   color: inherit;
@@ -109,9 +103,7 @@ a {
 }
 
 
-/* =========================
-   FORM ELEMENTS
-========================= */
+/* FORM ELEMENTS */
 
 button,
 input,
@@ -121,9 +113,7 @@ select {
 }
 
 
-/* =========================
-   IMAGES
-========================= */
+/* IMAGES */
 
 img {
   display: block;

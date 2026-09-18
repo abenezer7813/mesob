@@ -1,20 +1,22 @@
 import React from 'react'
 import { FiPlus } from 'react-icons/fi'
-import "./MenuCard.css"
+import styles from './MenuCard.module.css'
 function MenuCard({ data }) {
     return (
 
-        <div >
+        <div className={styles.card}>
             <div>
-                <img src="./" alt="" />
+                <img src="doro.png" alt="" />
             </div>
-            <div>{data.nameEn}</div>
-            <div>
-                {data.description}
+            <div className={styles.nameDesc}>
+                <div className={styles.name}>{data.nameEn}</div>
+                <div className={styles.desc}>
+                    {data.description}
+                </div>
             </div>
-            <div>
-                <span>{data.priceETB} ETB</span>
-                <button><FiPlus /> Add</button>
+            <div className={styles.priceAdd}>
+                <span className={styles.price}>{data.priceETB} ETB</span>
+                <button className={styles.addBtn}><FiPlus /> Add</button>
             </div>
         </div>
 

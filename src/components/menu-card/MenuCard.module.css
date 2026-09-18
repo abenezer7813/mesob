@@ -1,0 +1,38 @@
+.card{
+    display: flex;
+    flex-direction: column;
+     overflow: hidden;
+     background-color: var(--white);
+    border-radius: var(--radius-md);
+     
+}
+.nameDesc{
+    padding: 10px;
+}
+.name{
+    color: black;
+    font-family: var( --font-heading);
+    font-weight: bold;
+    font-size:x-large;
+}
+.desc{
+    
+}
+.priceAdd{
+    display: flex;
+    background-color: var(--background-warm);
+    justify-content: space-between;
+    padding: 5px 10px;
+}
+.price{
+    font-weight: bold;
+    color: var(--primary-dark);
+    font-size: larger;
+}
+.addBtn{
+    border: none;
+    color: var(--white);
+    background-color: var(--primary-dark);
+    border-radius: var(--radius-md);
+    padding:  0px 15px;
+}
