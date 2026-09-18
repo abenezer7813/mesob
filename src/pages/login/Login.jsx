@@ -4,30 +4,31 @@ import { FiArrowRight, FiEye, FiLock, FiMail, FiSmartphone } from 'react-icons/f
 import { useNavigate } from 'react-router-dom'
 import { login } from '../../services/authService'
 import { useAuth } from '../../hooks/useAuth'
+import styles from './Login.module.css'
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({})
-  const userContext=useAuth()
+  const userContext = useAuth()
   function handleSubmit(e) {
     e.preventDefault()
     const validationErrors = validate(form)
-    if(Object.keys(validationErrors).length===0){
+    if (Object.keys(validationErrors).length === 0) {
       try {
-        const res=login(form)
+        const res = login(form)
         userContext.loginUser(res)
         navigate('/menu')
         setErrors([])
-        
+
       } catch (error) {
         console.log(error.message)
-        setErrors({login:error.message})
-        
+        setErrors({ login: error.message })
+
       }
-    }else{
+    } else {
 
       setErrors(validationErrors)
     }
-    
+
   }
   function validate(form) {
     const errors = {}
@@ -48,47 +49,57 @@ function Login() {
   const navigate = useNavigate()
   return (
 
-    <div className='login-page'>
+    <div className={styles.loginPage}>
+
+      <h1>Welcome TO Mesob Table </h1>
+      <p>Sign in to manage your feast ,Telebirr rewards ,and reserved dinning mesobs</p>
+
       <form onSubmit={handleSubmit}>
-        <div className='reg-method'>
+        <div className={styles.regMethod}>
+          <div className={styles.active}><FiMail /> Email Address</div>
           <div> <FiSmartphone /> Ethiopian Mobile(+251)</div>
-          <div> Email Address</div>
         </div>
-        <div>
-          <div>
+        <div >
+          <div >
             <label htmlFor='email'>Email</label>
-            <div>
-              < FiMail /><input type='email' id='email' name='email'
+            <div className={styles.inputs}>
+                < FiMail size={20}/>
+            <input type='email' id='email' name='email'
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                value={form.email} />
+                value={form.email}
+                placeholder='example@gmail.com' />  
             </div>
           </div>
-          <div><p>{errors.email}</p></div>
+          <div className={styles.errors}><p>{errors.email}</p></div>
 
-          <div>
+          <div >
             <label htmlFor='pass'>Password</label>
-            <div>
-              <FiLock color='black' />
+            <div className={styles.inputs}>
+              <FiLock size={20} color='black' />
               <input type="text" id='pass' name='pass'
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
-                value={form.password} />
-              <FiEye />
+                value={form.password} 
+                placeholder='*******'/>
+              <FiEye size={20} />
             </div>
           </div>
-          <div><p>{errors.password}</p></div>
-           <div><p>{errors.login}</p></div>
-          <div>
-            <span><input type='checkbox' /> Remember me on this phone </span>
-            <span>Forgot PIN?</span>
+          <div className={styles.errors}><p>{errors.password}</p></div>
+          <div className={styles.errors}><p>{errors.login}</p></div>
+          <div className={styles.forgot}>
+            <span><input className={styles.checkbox} type='checkbox'  /> Remember me on this phone </span>
+            <span className={styles.forgotPin}>Forgot PIN ?</span>
 
           </div>
-          <div>
+          <div className={styles.signBtn}>
             <button type='submit'>Sign In to Mesob House <FiArrowRight /></button>
           </div>
         </div>
       </form>
-      <div><span>New to our dining family?</span>
-        <p onClick={() => navigate('/register')}>Join the Mesob Table & Register </p></div>
+      <div className={styles.line}></div>
+      <div className={styles.register}>
+        <p>New to our dining family?</p>
+        <p className={styles.regLink} onClick={() => navigate('/register')}>Join the Mesob Table & Register </p>
+      </div>
     </div>
   )
 }
