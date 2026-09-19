@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-
+import styles from './Menu.module.css'
 import MenuCard from '../../components/menu-card/MenuCard'
-import './Menu.css'
 import Categories from '../../components/catagories/Categories'
 function Menu() {
     const [dishes, setDishes] = useState([])
@@ -14,7 +13,7 @@ function Menu() {
         "Fasting & Vegan / Tsom",
         "Beverages & Tej"
     ]
-    
+
     useEffect(() => {
 
         fetch('https://addis-eats-backend.onrender.com/menu/')
@@ -29,13 +28,16 @@ function Menu() {
 
 
     }, [])
+    const filteredDishes = selectedCategory === 'All'
+        ? dishes
+        : dishes.filter((d) => d.category === selectedCategory)
     return (
-        <div className='menu-page'>
-            <div className='categories'>
-                <Categories categories={categories} current={selectedCategory} onSelect={setSelectedCategory}/>
+        <div className={styles.menuPage}>
+            <div className={styles.categories}>
+                <Categories categories={categories} current={selectedCategory} onSelect={setSelectedCategory} />
             </div>
-            <div className='menu-cards'>
-                {dishes.map((d) => <MenuCard data={d} key={d.id} />)}
+            <div className={styles.menuCards}>
+                {filteredDishes.map((d) => <MenuCard data={d} key={d.id} />)}
             </div>
         </div>
     )

@@ -1,7 +1,27 @@
-button{
+.button{
     border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius-lg);
+    margin: 10px 0px;
+    cursor: pointer;
+    color: var(--text);
+    background-color: var(--background-warm);
+}
+
+.button:hover{
+background-color:antiquewhite ;
+}
+.categories{
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+  
 }
 .active{
-    background-color: var(--background);
-    
+    background-color: var(--primary-dark);
+    color: var(--surface);
+
+}
+.active:hover{
+    background-color: var(--primary-dark)
 }
