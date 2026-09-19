@@ -37,8 +37,8 @@ function Header() {
 
       ) : (
         <nav className={styles.guest}>
-          <Link to='/login' className={styles.signin}>Sign In</Link>
-          <Link to='/register' className={styles.register}>Register</Link>
+          <NavLink  to='/login' className={({ isActive }) => isActive ? styles.signin && styles.active : styles.signin}>Sign In</NavLink>
+          <NavLink to='/register' className={({ isActive }) => isActive ? styles.active : styles.signin}>Register</NavLink>
         </nav>
       )}
     </div>

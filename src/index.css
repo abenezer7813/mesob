@@ -54,8 +54,20 @@
      SHADOW
   ========================= */
 
-  --shadow-sm: 0 2px 8px rgba(80, 40, 30, 0.08);
-  --shadow-md: 0 4px 14px rgba(80, 40, 30, 0.12);
+  --shadow-xs: 0 1px 3px rgba(80, 40, 30, 0.06);
+
+--shadow-sm: 0 2px 8px rgba(80, 40, 30, 0.08);
+
+--shadow-md: 0 4px 14px rgba(80, 40, 30, 0.12);
+
+--shadow-lg: 0 8px 24px rgba(80, 40, 30, 0.14);
+
+--shadow-xl: 0 12px 35px rgba(80, 40, 30, 0.16);
+
+--shadow-2xl: 0 180px 450px rgba(80, 40, 30, 0.20);
+--shadow-card:
+  0 2px 6px rgba(80, 40, 30, 0.06),
+  0 8px 20px rgba(80, 40, 30, 0.08);
 }
 
 
