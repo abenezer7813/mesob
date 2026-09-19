@@ -1,0 +1,25 @@
+.searchBox {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  width: 65%;
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  margin: 20px 5px;
+  gap: 10px;
+}
+
+.searchEl {
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.searchBox input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+}
