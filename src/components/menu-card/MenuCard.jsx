@@ -1,7 +1,9 @@
 import React from 'react'
 import { FiPlus } from 'react-icons/fi'
 import styles from './MenuCard.module.css'
+import { useCart } from '../../hooks/useCart'
 function MenuCard({ data }) {
+    const {addToCart,}=useCart()
     return (
 
         <div className={styles.card}>
@@ -16,7 +18,7 @@ function MenuCard({ data }) {
             </div>
             <div className={styles.priceAdd}>
                 <span className={styles.price}>{data.priceETB} ETB</span>
-                <button className={styles.addBtn}><FiPlus /> Add</button>
+                <button onClick={()=>addToCart(data)} className={styles.addBtn}><FiPlus /> Add</button>
             </div>
         </div>
 

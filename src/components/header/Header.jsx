@@ -2,9 +2,11 @@ import React from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import styles from './Header.module.css'
+import { useCart } from '../../hooks/useCart'
 
 function Header() {
   const { user, logOutUser } = useAuth()
+  const {cartCount,cartTotal}=useCart()
   const navigate = useNavigate()
 
   function handleLogout() {
@@ -24,8 +26,8 @@ function Header() {
             <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/'>Order & Cart</NavLink>
             <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/'>Delivery & Checkout</NavLink>
              <div className={styles.cart}>
-              <div>3 Items</div>
-              <div className={styles.total}>1450 ETB</div>
+              <div>{cartCount()} Items</div>
+              <div className={styles.total}>{cartTotal()}</div>
             </div>
             <span>Hi, {user.name}</span>
            
