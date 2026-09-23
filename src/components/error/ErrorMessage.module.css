@@ -1,0 +1,33 @@
+.container {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  text-align: center;
+  
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #fee2e2;
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.container h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+
+.container p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}

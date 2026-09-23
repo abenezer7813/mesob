@@ -4,3 +4,35 @@ grid-template-columns: repeat(4,1fr);
 gap: 10px;
 margin: 30px;
 }
+.emptyState {
+  text-align: center;
+  padding: 80px 24px;
+ 
+}
+
+.emptyIcon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.emptyState p {
+  color: #999;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.clearBtn {
+  background: #7a1f1f;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.clearBtn:hover {
+  background: #611818;
+}

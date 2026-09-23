@@ -8,6 +8,7 @@ import Layout from './components/layout/Layout'
 import Cart from './pages/cart/Cart'
 import Checkout from './pages/checkout/Checkout'
 import OrderConfirmation from './pages/order-confirmation/OrderConfirmation'
+import DishDetail from './pages/menu/DishDetail'
 
 function App() {
 
@@ -26,8 +27,11 @@ function App() {
         <Route path='/cart' element={<ProtectedRoute><Cart /></ProtectedRoute>}>
         </Route>
         <Route path='/login' element={<Login />} />
-        <Route path='/checkout' element={<Checkout/>}></Route>
+        <Route path='/checkout' element={<Checkout />}></Route>
         <Route path='/order-confirmation' element={<ProtectedRoute><OrderConfirmation /></ProtectedRoute>} />
+
+
+        <Route path='/menu/:id' element={<ProtectedRoute><DishDetail /></ProtectedRoute>} />
       </Route>
     </Routes>
   )

@@ -4,7 +4,7 @@ import MenuCard from '../../components/menu-card/MenuCard'
 import Categories from '../../components/catagories/Categories'
 import Search from '../../components/search/Search'
 import LoadingSpinner from '../../components/loading-sppiner/LoadingSpinner'
-import Error from '../../components/error/Error'
+import Error from '../../components/error/ErrorMessage'
 
 function Menu() {
     const [dishes, setDishes] = useState([])
@@ -45,12 +45,12 @@ function Menu() {
         ? dishes
         : dishes.filter((d) => d.category === selectedCategory)
     const search = filteredDishes.filter(d => d.nameEn.toLowerCase().includes(searchTerm.toLowerCase()))
-if(loading){
-    return <LoadingSpinner/>
-}
-     if(error){
-        return <Error error={error}/>
-     }
+    if (loading) {
+        return <LoadingSpinner />
+    }
+    if (error) {
+        return <Error error={error} />
+    }
 
     return (
         <div className={styles.menuPage}>
@@ -61,7 +61,22 @@ if(loading){
                 <Categories categories={categories} current={selectedCategory} onSelect={setSelectedCategory} />
             </div>
             <div className={styles.menuCards}>
-                {search.map((d) => <MenuCard data={d} key={d.id} />)}
+                {search.length === 0 ? (
+                    <div className={styles.emptyState}>
+                        <span className={styles.emptyIcon}>🍽️</span>
+                        <p>No dishes match "{searchTerm}"{selectedCategory !== 'All' ? ` in ${selectedCategory}` : ''}.</p>
+                        <button
+                            className={styles.clearBtn}
+                            onClick={() => {
+                                setSearchTerm('')
+                                setSelectedCategory('All')
+                            }}
+                        >
+                            Show all dishes
+                        </button>
+                    </div>
+                ) :
+                    search.map((d) => <MenuCard data={d} key={d.id} />)}
             </div>
         </div>
     )

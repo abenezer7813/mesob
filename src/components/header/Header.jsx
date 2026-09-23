@@ -22,7 +22,6 @@ function Header() {
         <div className={styles.navCart} >
           <nav className={styles.authenticatedNav}>
             <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/menu'>Menu</NavLink>
-            <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/'>Featured Dish</NavLink>
             <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/cart'>Order & Cart</NavLink>
             <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/checkout'>Delivery & Checkout</NavLink>
              <div className={styles.cart}>

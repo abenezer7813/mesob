@@ -2,11 +2,17 @@ import React from 'react'
 import { FiPlus } from 'react-icons/fi'
 import styles from './MenuCard.module.css'
 import { useCart } from '../../hooks/useCart'
+import { useNavigate } from 'react-router-dom'
 function MenuCard({ data }) {
     const {addToCart,}=useCart()
+    const navigate = useNavigate()
+
+  function handleClick() {
+    navigate(`/menu/${data.id}`, { state: data })
+  }
     return (
 
-        <div className={styles.card}>
+        <div className={styles.card} onClick={handleClick}>
             <div>
                 <img src="doro.png" alt="" />
             </div>
@@ -18,7 +24,7 @@ function MenuCard({ data }) {
             </div>
             <div className={styles.priceAdd}>
                 <span className={styles.price}>{data.priceETB} ETB</span>
-                <button onClick={()=>addToCart(data)} className={styles.addBtn}><FiPlus /> Add</button>
+                <button onClick={(e)=>{e.stopPropagation(); addToCart(data)}} className={styles.addBtn}><FiPlus /> Add</button>
             </div>
         </div>
 
