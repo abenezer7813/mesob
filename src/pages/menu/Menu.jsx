@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react'
+import React, {  useEffect, useMemo, useState } from 'react'
 import styles from './Menu.module.css'
 import MenuCard from '../../components/menu-card/MenuCard'
 import Categories from '../../components/catagories/Categories'
@@ -41,10 +41,11 @@ function Menu() {
 
 
     }, [])
-    const filteredDishes = selectedCategory === 'All'
-        ? dishes
-        : dishes.filter((d) => d.category === selectedCategory)
-    const search = filteredDishes.filter(d => d.nameEn.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filteredDishes = useMemo(()=>{ 
+        return dishes.filter((d)=>selectedCategory==="All"||d.category===selectedCategory)
+                      .filter((d)=>d.nameEn.toLowerCase().includes(searchTerm.toLowerCase()))
+                    },[dishes,selectedCategory,searchTerm])
+//const search = filteredDishes.filter(d => d.nameEn.toLowerCase().includes(searchTerm.toLowerCase()))
     if (loading) {
         return <LoadingSpinner />
     }
@@ -61,7 +62,7 @@ function Menu() {
                 <Categories categories={categories} current={selectedCategory} onSelect={setSelectedCategory} />
             </div>
             <div className={styles.menuCards}>
-                {search.length === 0 ? (
+                {filteredDishes.length === 0 ? (
                     <div className={styles.emptyState}>
                         <span className={styles.emptyIcon}>🍽️</span>
                         <p>No dishes match "{searchTerm}"{selectedCategory !== 'All' ? ` in ${selectedCategory}` : ''}.</p>
@@ -76,7 +77,7 @@ function Menu() {
                         </button>
                     </div>
                 ) :
-                    search.map((d) => <MenuCard data={d} key={d.id} />)}
+                    filteredDishes.map((d) => <MenuCard data={d} key={d.id} />)}
             </div>
         </div>
     )

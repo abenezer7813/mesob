@@ -8,8 +8,6 @@
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--border);
-
-
 }
 
 .authenticatedNav a,
@@ -35,8 +33,11 @@ a:hover{
 .active {
     color: var(--white);
     background-color: var(--primary-dark);
-
+    
     border-radius: var(--radius-md);
+}
+.active:hover{
+    color: var(--surface);
 }
 
 .cart {
@@ -67,4 +68,7 @@ a:hover{
     border-radius: var(--radius-md);
     font-weight: bold;
     color: var(--primary-dark);
+}
+.guest a{
+    padding: 10px 20px;
 }

@@ -7,7 +7,7 @@ function Cart() {
   const navigate = useNavigate()
 
   const subtotal = cartTotal()
-  // placeholder values — adjust logic once you have real delivery/tax rules
+  
   const deliveryFee = subtotal >= 1200 ? 0 : 40
   const tax = Math.round(subtotal * 0.15)
   const grandTotal = subtotal + deliveryFee + tax

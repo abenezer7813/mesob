@@ -46,7 +46,6 @@ function Checkout() {
     if (!form.street) errs.street = 'Street address is required'
     return errs
   }
-
   const subtotal = cartTotal()
   const expressFee = 150
   const grandTotal = subtotal + expressFee
