@@ -21,8 +21,7 @@ function Header() {
       {user ? (
         <div className={styles.navCart} >
           <nav className={styles.authenticatedNav}>
-            <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/menu'>Menu</NavLink>
-            <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/cart'>Order & Cart</NavLink>
+          
             <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/checkout'>Delivery & Checkout</NavLink>
              <div className={styles.cart}>
               <div>{cartCount()} Items</div>
@@ -38,6 +37,8 @@ function Header() {
 
       ) : (
         <nav className={styles.guest}>
+            <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/menu'>Menu</NavLink>
+            <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/cart'>Order & Cart</NavLink>
           <NavLink  to='/login' className={({ isActive }) => isActive ? styles.signin && styles.active : styles.signin}>Sign In</NavLink>
           <NavLink to='/register' className={({ isActive }) => isActive ? styles.active : styles.signin}>Register</NavLink>
         </nav>

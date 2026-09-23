@@ -15,25 +15,18 @@ function App() {
 
   return (
 
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/menu' element={<ProtectedRoute>
-          <Menu />
-
-        </ProtectedRoute>}>
-        </Route>
-        <Route path='/cart' element={<ProtectedRoute><Cart /></ProtectedRoute>}>
-        </Route>
-        <Route path='/login' element={<Login />} />
-        <Route path='/checkout' element={<Checkout />}></Route>
-        <Route path='/order-confirmation' element={<ProtectedRoute><OrderConfirmation /></ProtectedRoute>} />
-
-
-        <Route path='/menu/:id' element={<ProtectedRoute><DishDetail /></ProtectedRoute>} />
-      </Route>
-    </Routes>
+   <Routes>
+  <Route element={<Layout />}>
+    <Route path="/" element={<Navigate to="/login" replace />} />
+    <Route path='/register' element={<Register />} />
+    <Route path='/login' element={<Login />} />
+    <Route path='/menu' element={<Menu />} />
+    <Route path='/menu/:id' element={<DishDetail />} />
+    <Route path='/cart' element={<Cart />} />
+    <Route path='/checkout' element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+    <Route path='/order-confirmation' element={<ProtectedRoute><OrderConfirmation /></ProtectedRoute>} />
+  </Route>
+</Routes>
   )
 }
 

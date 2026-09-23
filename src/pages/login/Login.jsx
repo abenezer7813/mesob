@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaArrowRight, FaLock } from 'react-icons/fa'
 import { FiArrowRight, FiEye, FiLock, FiMail, FiSmartphone } from 'react-icons/fi'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { login } from '../../services/authService'
 import { useAuth } from '../../hooks/useAuth'
 import styles from './Login.module.css'
@@ -9,6 +9,8 @@ function Login() {
   const [form, setForm] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({})
   const userContext = useAuth()
+  const location = useLocation()
+
   function handleSubmit(e) {
     e.preventDefault()
     const validationErrors = validate(form)
@@ -16,7 +18,8 @@ function Login() {
       try {
         const res = login(form)
         userContext.loginUser(res)
-        navigate('/menu')
+        const redirectTo = location.state?.from?.pathname || '/menu'
+        navigate(redirectTo, { replace: true })
         setErrors([])
 
       } catch (error) {
@@ -63,11 +66,11 @@ function Login() {
           <div >
             <label htmlFor='email'>Email</label>
             <div className={styles.inputs}>
-                < FiMail size={20}/>
-            <input type='email' id='email' name='email'
+              < FiMail size={20} />
+              <input type='email' id='email' name='email'
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 value={form.email}
-                placeholder='example@gmail.com' />  
+                placeholder='example@gmail.com' />
             </div>
           </div>
           <div className={styles.errors}><p>{errors.email}</p></div>
@@ -78,15 +81,15 @@ function Login() {
               <FiLock size={20} color='black' />
               <input type="text" id='pass' name='pass'
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
-                value={form.password} 
-                placeholder='*******'/>
+                value={form.password}
+                placeholder='*******' />
               <FiEye size={20} />
             </div>
           </div>
           <div className={styles.errors}><p>{errors.password}</p></div>
           <div className={styles.errors}><p>{errors.login}</p></div>
           <div className={styles.forgot}>
-            <span><input className={styles.checkbox} type='checkbox'  /> Remember me on this phone </span>
+            <span><input className={styles.checkbox} type='checkbox' /> Remember me on this phone </span>
             <span className={styles.forgotPin}>Forgot PIN ?</span>
 
           </div>
