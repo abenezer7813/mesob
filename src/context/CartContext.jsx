@@ -46,9 +46,11 @@ function cartCount() {
 function cartTotal() {
     return cart.reduce((sum, i) => sum + i.priceETB * i.quantity, 0)
 }
-
+function clearCart() {
+    save([])
+}
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, cartCount, cartTotal }}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, cartCount, cartTotal ,clearCart}}>
             {children}
         </CartContext.Provider>
     )

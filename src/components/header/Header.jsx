@@ -23,11 +23,11 @@ function Header() {
           <nav className={styles.authenticatedNav}>
             <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/menu'>Menu</NavLink>
             <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/'>Featured Dish</NavLink>
-            <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/'>Order & Cart</NavLink>
-            <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/'>Delivery & Checkout</NavLink>
+            <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/cart'>Order & Cart</NavLink>
+            <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/checkout'>Delivery & Checkout</NavLink>
              <div className={styles.cart}>
               <div>{cartCount()} Items</div>
-              <div className={styles.total}>{cartTotal()}</div>
+              <div className={styles.total}>{cartTotal()}  ETB</div>
             </div>
             <span>Hi, {user.name}</span>
            

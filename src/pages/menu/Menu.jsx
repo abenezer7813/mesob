@@ -3,7 +3,7 @@ import styles from './Menu.module.css'
 import MenuCard from '../../components/menu-card/MenuCard'
 import Categories from '../../components/catagories/Categories'
 import Search from '../../components/search/Search'
-import { useCart } from '../../hooks/useCart'
+
 function Menu() {
     const [dishes, setDishes] = useState([])
     const [selectedCategory, setSelectedCategory] = useState('All')

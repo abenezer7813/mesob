@@ -89,12 +89,7 @@ function Footer() {
         </div>
       </div>
 
-      {/* Page Navigation */}
-      <div className="page-navigation">
-        <button>‹</button>
-        <span>2 / 8</span>
-        <button>›</button>
-      </div>
+     
     </footer>
   );
 }

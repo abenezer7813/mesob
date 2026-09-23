@@ -12,10 +12,15 @@
 
 }
 
-a,
+.authenticatedNav a,
 span {
     text-decoration: none;
     padding: 10px 10px;
+    
+    
+}
+a:hover{
+    color: var(--primary-dark);
 }
 
 .authenticatedNav {
