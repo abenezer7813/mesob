@@ -5,18 +5,26 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { login } from '../../services/authService'
 import { useAuth } from '../../hooks/useAuth'
 import styles from './Login.module.css'
+import z from 'zod'
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({})
   const userContext = useAuth()
   const location = useLocation()
-
+  const loginSchema=z.object({
+    email:z.email('Invalid Email'),
+    password:z.string().min(6,'password must be at least 6 character')
+  })
   function handleSubmit(e) {
     e.preventDefault()
-    const validationErrors = validate(form)
+    const validationErrors ={}
+    const result= loginSchema.safeParse(form)
+    if(!result.success){
+      result.error.issues.forEach((issue)=>validationErrors[issue.path[0]]=issue.message)
+    }
     if (Object.keys(validationErrors).length === 0) {
       try {
-        const res = login(form)
+        const res = login(result.data)
         userContext.loginUser(res)
         const redirectTo = location.state?.from?.pathname || '/menu'
         navigate(redirectTo, { replace: true })
