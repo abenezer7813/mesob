@@ -4,16 +4,19 @@ import { useAuth } from '../../hooks/useAuth'
 import styles from './Header.module.css'
 import { useCart } from '../../hooks/useCart'
 import { useCartStore } from '../../store/cartStore'
+import { useAuthStore } from '../../store/authStore'
 
 function Header() {
-  const { user, logOutUser } = useAuth()
+  const logout=useAuthStore((s)=>s.logout)
+  const user=useAuthStore((s)=>s.user)
+  
  
   const cartCount=useCartStore((s)=>s.items.reduce((count,item)=>count+item.quantity,0))
   const cartTotal=useCartStore((s)=>s.items.reduce((total,item)=>total+item.priceETB*item.quantity,0))
   const navigate = useNavigate()
 
   function handleLogout() {
-    logOutUser()
+    logout()
     navigate('/login')
   }
 

@@ -6,10 +6,12 @@ import { login } from '../../services/authService'
 import { useAuth } from '../../hooks/useAuth'
 import styles from './Login.module.css'
 import z from 'zod'
+import { useStore } from 'zustand'
+import { useAuthStore } from '../../store/authStore'
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({})
-  const userContext = useAuth()
+  const setUser=useAuthStore((s)=>s.setUser)
   const location = useLocation()
   const loginSchema=z.object({
     email:z.email('Invalid Email'),
@@ -25,7 +27,7 @@ function Login() {
     if (Object.keys(validationErrors).length === 0) {
       try {
         const res = login(result.data)
-        userContext.loginUser(res)
+        setUser(res)
         const redirectTo = location.state?.from?.pathname || '/menu'
         navigate(redirectTo, { replace: true })
         setErrors([])
