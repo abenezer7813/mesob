@@ -1,13 +1,17 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useCart } from '../../hooks/useCart'
 import styles from './Cart.module.css'
+import { useCartStore } from '../../store/cartStore'
 
 function Cart() {
-  const { cart, updateQuantity, removeFromCart, cartTotal } = useCart()
+  const cart = useCartStore((s) => s.items)
+  const updateQuantity = useCartStore((s) => s.updateQuantity)
+  const cartTotal = useCartStore((s) => s.items.reduce((total, i) =>total+ i.priceETB * i.quantity, 0))
+  const removeFromCart=useCartStore((s)=>s.removeFromCart)
+
   const navigate = useNavigate()
 
-  const subtotal = cartTotal()
-  
+  const subtotal = cartTotal
+
   const deliveryFee = subtotal >= 1200 ? 0 : 40
   const tax = Math.round(subtotal * 0.15)
   const grandTotal = subtotal + deliveryFee + tax

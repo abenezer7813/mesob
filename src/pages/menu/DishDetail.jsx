@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
 import { useCart } from '../../hooks/useCart'
 import styles from './DishDetail.module.css'
+import { useCartStore } from '../../store/cartStore'
 
 function DishDetail() {
     const { state: dish } = useLocation()
     const navigate = useNavigate()
-    const { addToCart } = useCart()
+    const  addToCart =useCartStore((s)=>s.addItem)
     const [quantity, setQuantity] = useState(1)
 
     useEffect(() => {

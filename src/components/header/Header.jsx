@@ -3,10 +3,13 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import styles from './Header.module.css'
 import { useCart } from '../../hooks/useCart'
+import { useCartStore } from '../../store/cartStore'
 
 function Header() {
   const { user, logOutUser } = useAuth()
-  const { cartCount, cartTotal } = useCart()
+ 
+  const cartCount=useCartStore((s)=>s.items.reduce((count,item)=>count+item.quantity,0))
+  const cartTotal=useCartStore((s)=>s.items.reduce((total,item)=>total+item.priceETB*item.quantity,0))
   const navigate = useNavigate()
 
   function handleLogout() {
@@ -25,8 +28,8 @@ function Header() {
           <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/cart'>Order & Cart</NavLink>
           <NavLink className={({ isActive }) => isActive ? styles.active : ''} to='/checkout'>Delivery & Checkout</NavLink>
           <div className={styles.cart}>
-            <div>{cartCount()} Items</div>
-            <div className={styles.total}>{cartTotal()}  ETB</div>
+            <div>{cartCount} Items</div>
+            <div className={styles.total}>{cartTotal}  ETB</div>
           </div>
           {user && (
             <>

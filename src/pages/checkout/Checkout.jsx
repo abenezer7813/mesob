@@ -134,15 +134,15 @@ function Checkout() {
                                     onChange={handleChange}
                                     placeholder="Bole Medhanialem / Kazanchis"
                                 />
-                                {errors.subCity && <p className={styles.error}>{errors.subCity}</p>}
-                            </div>
-                            <div className={styles.field}>
-                                <label htmlFor="street">Street, Building, Flat No.</label>
-                                <input
-                                    id="street"
-                                    name="street"
-                                    value={form.street}
-                                    onChange={handleChange}
+                                        {errors.subCity && <p className={styles.error}>{errors.subCity}</p>}
+                                    </div>
+                                    <div className={styles.field}>
+                                        <label htmlFor="street">Street, Building, Flat No.</label>
+                                        <input
+                                            id="street"
+                                            name="street"
+                                            value={form.street}
+                                            onChange={handleChange}
                                     placeholder="Bentui Edna Mall, House No. 402, 3rd Floor"
                                 />
                                 {errors.street && <p className={styles.error}>{errors.street}</p>}
