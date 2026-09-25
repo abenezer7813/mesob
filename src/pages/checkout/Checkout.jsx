@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import { useCart } from '../../hooks/useCart'
 import styles from './Checkout.module.css'
-import z, { email } from 'zod'
+import z from 'zod'
+import { useCartStore } from '../../store/cartStore'
+import { useAuthStore } from '../../store/authStore'
 
 const paymentMethods = [
     { id: 'telebirr', label: 'Telebirr Quick Merchant Pay' },
@@ -13,8 +15,11 @@ const paymentMethods = [
 ]
 
 function Checkout() {
-    const { user } = useAuth()
-    const { cart, cartTotal, clearCart } = useCart()
+    const user = useAuthStore((s) => s.user)
+    const clearCart = useCartStore((s) => s.clearCart)
+    const cart = useCartStore((s) => s.items)
+    const cartTotal = useCartStore((s) => s.items.reduce((total, i) => total + i.priceETB * i.quantity, 0))
+
     const navigate = useNavigate()
 
     const [form, setForm] = useState({
@@ -34,8 +39,8 @@ function Checkout() {
         subCity: z.string().min(1, "SubCity can not be empty"),
         street: z.string().min(1, "Street can not be empty"),
         landmark: z.string().min(1, "Landmark can not be empty"),
-        deliveryTime:z.string(),
-        paymentMethod:z.enum(['telebirr','cbe','cod','amole'])
+        deliveryTime: z.string(),
+        paymentMethod: z.enum(['telebirr', 'cbe', 'cod', 'amole'])
     })
     const [errors, setErrors] = useState({})
 
@@ -44,17 +49,17 @@ function Checkout() {
         setForm({ ...form, [name]: value })
     }
 
-   
-    const subtotal = cartTotal()
+
+    const subtotal = cartTotal
     const expressFee = 150
     const grandTotal = subtotal + expressFee
 
     function handleConfirm(e) {
         e.preventDefault()
         const validationErrors = {}
-        const result=checkoutSchema.safeParse(form)
-        if(!result.success){
-            result.error.issues.forEach((issues)=>validationErrors[issues.path[0]]=issues.message)
+        const result = checkoutSchema.safeParse(form)
+        if (!result.success) {
+            result.error.issues.forEach((issues) => validationErrors[issues.path[0]] = issues.message)
         }
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors)
@@ -134,15 +139,15 @@ function Checkout() {
                                     onChange={handleChange}
                                     placeholder="Bole Medhanialem / Kazanchis"
                                 />
-                                        {errors.subCity && <p className={styles.error}>{errors.subCity}</p>}
-                                    </div>
-                                    <div className={styles.field}>
-                                        <label htmlFor="street">Street, Building, Flat No.</label>
-                                        <input
-                                            id="street"
-                                            name="street"
-                                            value={form.street}
-                                            onChange={handleChange}
+                                {errors.subCity && <p className={styles.error}>{errors.subCity}</p>}
+                            </div>
+                            <div className={styles.field}>
+                                <label htmlFor="street">Street, Building, Flat No.</label>
+                                <input
+                                    id="street"
+                                    name="street"
+                                    value={form.street}
+                                    onChange={handleChange}
                                     placeholder="Bentui Edna Mall, House No. 402, 3rd Floor"
                                 />
                                 {errors.street && <p className={styles.error}>{errors.street}</p>}
@@ -193,7 +198,7 @@ function Checkout() {
                                 </button>
                             ))}
                         </div>
-                         {errors.paymentMethod && <p className={styles.error}>{errors.paymentMethod}</p>}
+                        {errors.paymentMethod && <p className={styles.error}>{errors.paymentMethod}</p>}
                     </section>
                 </div>
 
