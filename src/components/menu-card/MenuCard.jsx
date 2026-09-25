@@ -17,6 +17,7 @@ function MenuCard({ data }) {
         <div className={styles.card} onClick={handleClick}>
             <div>
                 <img src="doro.png" alt="" />
+                
             </div>
             <div className={styles.nameDesc}>
                 <div className={styles.name}>{data.nameEn}</div>

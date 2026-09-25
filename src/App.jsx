@@ -9,6 +9,7 @@ import Cart from './pages/cart/Cart'
 import Checkout from './pages/checkout/Checkout'
 import OrderConfirmation from './pages/order-confirmation/OrderConfirmation'
 import DishDetail from './pages/menu/DishDetail'
+import ErrorBoundary from './components/ErrorBoundary'
 
 function App() {
 
@@ -20,7 +21,7 @@ function App() {
         <Route path="/" element={<Navigate to="/menu" replace />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/menu' element={<Menu />} />
+        <Route path='/menu' element={<ErrorBoundary><Menu /></ErrorBoundary>} />
         <Route path='/menu/:id' element={<DishDetail />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/checkout' element={<ProtectedRoute><Checkout /></ProtectedRoute>} />

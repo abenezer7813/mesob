@@ -1,10 +1,11 @@
-import React, {  useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import styles from './Menu.module.css'
 import MenuCard from '../../components/menu-card/MenuCard'
 import Categories from '../../components/catagories/Categories'
 import Search from '../../components/search/Search'
 import LoadingSpinner from '../../components/loading-sppiner/LoadingSpinner'
 import Error from '../../components/error/ErrorMessage'
+import ErrorBoundary from '../../components/ErrorBoundary'
 
 function Menu() {
     const [dishes, setDishes] = useState([])
@@ -41,11 +42,11 @@ function Menu() {
 
 
     }, [])
-    const filteredDishes = useMemo(()=>{ 
-        return dishes.filter((d)=>selectedCategory==="All"||d.category===selectedCategory)
-                      .filter((d)=>d.nameEn.toLowerCase().includes(searchTerm.toLowerCase()))
-                    },[dishes,selectedCategory,searchTerm])
-//const search = filteredDishes.filter(d => d.nameEn.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filteredDishes = useMemo(() => {
+        return dishes.filter((d) => selectedCategory === "All" || d.category === selectedCategory)
+            .filter((d) => d.nameEn.toLowerCase().includes(searchTerm.toLowerCase()))
+    }, [dishes, selectedCategory, searchTerm])
+    //const search = filteredDishes.filter(d => d.nameEn.toLowerCase().includes(searchTerm.toLowerCase()))
     if (loading) {
         return <LoadingSpinner />
     }
@@ -54,6 +55,7 @@ function Menu() {
     }
 
     return (
+
         <div className={styles.menuPage}>
             <div className={styles.search}>
                 <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -76,8 +78,10 @@ function Menu() {
                             Show all dishes
                         </button>
                     </div>
-                ) :
-                    filteredDishes.map((d) => <MenuCard data={d} key={d.id} />)}
+                ) : filteredDishes.map((d) =>
+                    <ErrorBoundary fallback={<div className={styles.cardError}>Couldn't load this dish.</div>}>
+                        <MenuCard data={d} key={d.id} />
+                    </ErrorBoundary>)}
             </div>
         </div>
     )
